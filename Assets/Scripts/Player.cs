@@ -101,5 +101,14 @@ public class Player : MonoBehaviour
 
 
 	//Triggerでない障害物にぶつかったとき
-
+	void OnCollisionEnter(Collision collision) {
+		//ぶつかったゲームオブジェクトの「タグ」が「Barrier]だったら
+		if (collision.gameObject.tag == "Barrier") {
+			speed = 0;
+			slideSpeed = 0;
+			animator.SetBool("Dead", true);
+			//UIの表示
+			uiscript.Gameover();
+		}
+	}
 }

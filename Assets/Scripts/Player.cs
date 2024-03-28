@@ -59,7 +59,12 @@ public class Player : MonoBehaviour
 		}
 
 		//アニメーション
-	
+		if (Input.GetKeyDown(KeyCode.DownArrow)) {
+			animator.SetBool("Slide", true);
+		}
+		if (Input.GetKeyUp(KeyCode.DownArrow)) {
+			animator.SetBool("Slide", false);
+		}
 
 		//現在再生されているアニメーション情報を取得
 		var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
@@ -84,7 +89,11 @@ public class Player : MonoBehaviour
 
 
 		//スライディングしていたら頭の判定をなくす
-		
+		if (isSlide == true) {
+			headCollider.SetActive(false);
+		} else {
+			headCollider.SetActive(true);
+		}
 
 		//落下時のGameOver判定
 		
